@@ -6,7 +6,7 @@
     "bundles",
     "diff"
   ],
-  "version": "1.0.4",
+  "version": "1.0.5",
   "type": "module",
   "bin": "build/index.js",
   "bugs": {
@@ -16,7 +16,7 @@
   "license": "MIT",
   "scripts": {
     "cli": "bun src/cli",
-    "build": "bun make-readme.ts && bun build src/cli/index.ts --outdir build --target node --production"
+    "build": "bun make-readme.ts && bun build src/cli/index.ts --outdir build --target node --production --define VERSION=\"'$(jq -r '.version' package.json)'\""
   },
   "files": [
     ""

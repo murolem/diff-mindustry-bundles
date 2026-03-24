@@ -1,9 +1,18 @@
 import fs from 'fs';
 import { assertFilepathExists } from './fs';
 
+declare const VERSION: string;
+
 export function gerVersionOrThrow(): string {
+    try {
+        const version = VERSION;
+        return version;
+    } catch (err) {
+        // pass
+    }
+    
     const filename = 'package.json';
-    assertFilepathExists(filename, p => `Failed to determine version: ${p} not found`);
+    assertFilepathExists(filename, p => `Failed to determine version: ${p} not found and no version was baked`);
 
     let json;
     try {
