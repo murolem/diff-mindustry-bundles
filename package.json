@@ -2,7 +2,7 @@
   "name": "diff-mindustry-bundles",
   "description": "A handy utility to view missing/extra/untranslated keys between bundles.",
   "keywords": ["Mindustry", "bundles", "diff"],
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "bin": "build/index.js",
   "scripts": {
