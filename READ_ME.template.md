@@ -10,17 +10,17 @@ The utility is hosted on NPM, so to run it you will:
 
 # Usage
 
-The readme will assume usage of `bun` (`bunx`).
+The readme will assume usage of `npm` (`npx`).
 
 Navigate to the Mindustry repository you've cloned locally.
 
 Then run:
 ```bash
-bunx diff-mindustry-bundles <translation_bundle>
+npx diff-mindustry-bundles <translation_bundle>
 ```
 where `<translation_bundle>` is the name of a bundle you want to check (no extension), for example: `bundle_de`.
 ```bash
-bunx diff-mindustry-bundles bundle_de
+npx diff-mindustry-bundles bundle_de
 ```
 
 Available options:
