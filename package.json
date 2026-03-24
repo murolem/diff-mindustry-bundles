@@ -1,15 +1,26 @@
 {
   "name": "diff-mindustry-bundles",
   "description": "A handy utility to view missing/extra/untranslated keys between bundles.",
-  "keywords": ["Mindustry", "bundles", "diff"],
-  "version": "1.0.1",
+  "keywords": [
+    "Mindustry",
+    "bundles",
+    "diff"
+  ],
+  "version": "1.0.2",
   "type": "module",
   "bin": "build/index.js",
+  "bugs": {
+    "url": "https://github.com/murolem/diff-mindustry-bundles/issues"
+  },
+  "repository": "github:murolem/diff-mindustry-bundles",
+  "license": "MIT",
   "scripts": {
     "cli": "bun src/cli",
     "build": "bun make-readme.ts && bun build src/cli/index.ts --outdir build --production"
-  }, 
-  "files": [""],
+  },
+  "files": [
+    ""
+  ],
   "devDependencies": {
     "@types/bun": "latest"
   },

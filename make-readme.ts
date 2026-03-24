@@ -2,7 +2,7 @@ import { assertFilepathExists } from './src/utils/fs';
 import fs from 'fs';
 import { exec } from 'node:child_process';
 
-const readmeTemplateName = 'README.template.md';
+const readmeTemplateName = 'READ_ME.template.md';
 const readmeName = 'README.md';
 
 assertFilepathExists(readmeTemplateName, p => `Readme template not found at: ` + p);

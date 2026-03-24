@@ -10,6 +10,59 @@ program
     .name("diff-mindustry-bundles")
     .description("A handy utility to view missing/extra/untranslated keys between bundles.")
     .version(gerVersionOrThrow())
+    .addHelpText("afterAll", chalk.gray(`\nVersion: ${gerVersionOrThrow()}`))
+    .addHelpText("afterAll", chalk.gray("Repository: https://github.com/murolem/diff-mindustry-bundles"))
+    .configureHelp({
+        formatHelp(cmd, helper) {
+            // Build custom help output
+            const helpLines = [];
+
+            // DESCRIPTION section
+            helpLines.push(chalk.bold("DESCRIPTION"));
+            helpLines.push(program.description());
+
+            // USAGE section
+            helpLines.push('');
+            helpLines.push(chalk.bold("USAGE"));
+            helpLines.push(helper.commandUsage(cmd));
+
+            const padWidth = helper.padWidth(cmd, helper);
+
+            // Add arguments if they exist
+            if (program.arguments.length > 0) {
+                helpLines.push('');
+                helpLines.push(chalk.bold('ARGUMENTS'));
+
+                program.registeredArguments.forEach(arg => {
+                    const termPart = 
+                        (arg.required ? '<' : '[')
+                        + arg.name()
+                        + (arg.required ? '>' : ']')
+
+                    helpLines.push(
+                        helper.formatItem(
+                            termPart,
+                            padWidth,
+                            helper.argumentDescription(arg),
+                            helper
+                        )
+                    );
+                });
+            }
+
+            // Add options if they exist
+            if (program.options.length > 0) {
+                helpLines.push('');
+                helpLines.push(chalk.bold('OPTIONS'));
+
+                program.options.forEach(option => {
+                    helpLines.push(helper.formatItem(option.flags, padWidth, option.description, helper));
+                });
+            }
+
+            return helpLines.join('\n') + '\n'
+        }
+    })
     .argument('<top-bundle>', `Bundle with your localization (no extension). For example: 'bundle_ru'`)
     .argument('[base-bundle]', `Bundle to compare with.`, 'bundle')
     .option('--base-dir <dirpath>', `Path to the directory containing ${chalk.bold('Mindustry')}`, '.')

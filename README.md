@@ -25,21 +25,24 @@ bunx diff-mindustry-bundles bundle_de
 
 Available options:
 ```bash
-Usage: diff-mindustry-bundles [options] <top-bundle> [base-bundle]
-
+DESCRIPTION
 A handy utility to view missing/extra/untranslated keys between bundles.
 
-Arguments:
-  top-bundle               Bundle with your localization (no extension). For
-                           example: 'bundle_ru'
-  base-bundle              Bundle to compare with. (default: "bundle")
+USAGE
+diff-mindustry-bundles [options] <top-bundle> [base-bundle]
 
-Options:
+ARGUMENTS
+  <top-bundle>             Bundle with your localization (no extension). For
+                           example: 'bundle_ru'
+  [base-bundle]            Bundle to compare with. (default: "bundle")
+
+OPTIONS
   -V, --version            output the version number
-  --base-dir <dirpath>     Path to the directory containing Mindustry (default:
-                           ".")
+  --base-dir <dirpath>     Path to the directory containing Mindustry
   --bundles-dir <dirpath>  Path to the directory containing bundles. Relative to
-                           the base directory. (default: "core/assets/bundles")
-  -h, --help               display help for command
+                           the base directory.
+
+Version: 1.0.2
+Repository: https://github.com/murolem/diff-mindustry-bundles
 
 ```
