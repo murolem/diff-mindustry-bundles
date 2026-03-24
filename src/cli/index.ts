@@ -6,6 +6,8 @@ import { assertDirpathExists, assertFilepathExists } from '../utils/fs';
 import { clamp } from '../utils/clamp';
 import { gerVersionOrThrow } from '../utils/getVersion';
 
+Error.stackTraceLimit = 0;
+
 program
     .name("diff-mindustry-bundles")
     .description("A handy utility to view missing/extra/untranslated keys between bundles.")

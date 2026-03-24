@@ -6,7 +6,7 @@
     "bundles",
     "diff"
   ],
-  "version": "1.0.2",
+  "version": "1.0.3",
   "type": "module",
   "bin": "build/index.js",
   "bugs": {
@@ -16,7 +16,7 @@
   "license": "MIT",
   "scripts": {
     "cli": "bun src/cli",
-    "build": "bun make-readme.ts && bun build src/cli/index.ts --outdir build --production"
+    "build": "bun make-readme.ts && bun build src/cli/index.ts --outdir build --target node --production"
   },
   "files": [
     ""
