@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { program } from '@commander-js/extra-typings';
 import chalk from 'chalk';
 import fs from 'fs';
