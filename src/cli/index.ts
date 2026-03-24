@@ -40,7 +40,7 @@ program
                 program.registeredArguments.forEach(arg => {
                     const termPart = 
                         (arg.required ? '<' : '[')
-                        + arg.name()
+                        + helper.argumentTerm(arg)
                         + (arg.required ? '>' : ']')
 
                     helpLines.push(
@@ -60,7 +60,14 @@ program
                 helpLines.push(chalk.bold('OPTIONS'));
 
                 program.options.forEach(option => {
-                    helpLines.push(helper.formatItem(option.flags, padWidth, option.description, helper));
+                    helpLines.push(
+                        helper.formatItem(
+                            helper.optionTerm(option),
+                            padWidth, 
+                            helper.optionDescription(option),
+                            helper
+                        )
+                    );
                 });
             }
 

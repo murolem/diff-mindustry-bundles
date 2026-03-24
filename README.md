@@ -38,11 +38,12 @@ ARGUMENTS
 
 OPTIONS
   -V, --version            output the version number
-  --base-dir <dirpath>     Path to the directory containing Mindustry
+  --base-dir <dirpath>     Path to the directory containing Mindustry (default:
+                           ".")
   --bundles-dir <dirpath>  Path to the directory containing bundles. Relative to
-                           the base directory.
+                           the base directory. (default: "core/assets/bundles")
 
-Version: 1.0.6
+Version: 1.0.7
 Repository: https://github.com/murolem/diff-mindustry-bundles
 
 ```
