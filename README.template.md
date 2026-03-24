@@ -1,0 +1,29 @@
+# diff-mindustry-bundles
+
+A CLI utility to view missing/extra/untranslated keys between bundles (localizations) for Mindustry.
+
+# Requirements
+
+The utility is hosted on NPM, so to run it you will:
+- A JS package manager that can run packages, so `npm` (`npx`), `bun` (`bunx`), etc. 
+- Local Mindustry repository.
+
+# Usage
+
+The readme will assume usage of `bun` (`bunx`).
+
+Navigate to the Mindustry repository you've cloned locally.
+
+Then run:
+```bash
+bunx diff-mindustry-bundles <translation_bundle>
+```
+where `<translation_bundle>` is the name of a bundle you want to check (no extension), for example: `bundle_de`.
+```bash
+bunx diff-mindustry-bundles bundle_de
+```
+
+Available options:
+```bash
+%help_output
+```
