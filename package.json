@@ -7,7 +7,7 @@
   "bin": "build/index.js",
   "scripts": {
     "cli": "bun src/cli",
-    "build": "bun make-readme.ts && bun build src/cli/index.ts --outdir build"
+    "build": "bun make-readme.ts && bun build src/cli/index.ts --outdir build --production"
   }, 
   "files": [""],
   "devDependencies": {
