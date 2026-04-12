@@ -43,7 +43,7 @@ OPTIONS
   --bundles-dir <dirpath>  Path to the directory containing bundles. Relative to
                            the base directory. (default: "core/assets/bundles")
 
-Version: 1.1.0
+Version: 1.1.1
 Repository: https://github.com/murolem/diff-mindustry-bundles
 
 ```
