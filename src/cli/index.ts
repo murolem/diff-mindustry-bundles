@@ -38,7 +38,7 @@ program
                 helpLines.push(chalk.bold('ARGUMENTS'));
 
                 program.registeredArguments.forEach(arg => {
-                    const termPart = 
+                    const termPart =
                         (arg.required ? '<' : '[')
                         + helper.argumentTerm(arg)
                         + (arg.required ? '>' : ']')
@@ -63,7 +63,7 @@ program
                     helpLines.push(
                         helper.formatItem(
                             helper.optionTerm(option),
-                            padWidth, 
+                            padWidth,
                             helper.optionDescription(option),
                             helper
                         )
@@ -105,7 +105,7 @@ program
 
             const diffLen = Object.keys(diff).length;
             const diffFmted = Object.entries(diff)
-                .map(([key, { string: value, line }]) => {
+                .map(([key, { text: value, line }]) => {
                     const leftPadSpaces = ' '.repeat(clamp(tabSize - line.toString().length, 0, Infinity));
                     const leftPadChars = leftPadSpaces + chalk.gray(line) + " " + prefix + ' ';
                     const allNoValue = leftPadChars + key + ' = ';
@@ -115,7 +115,7 @@ program
 
             const header = chalk.bold(`    ${msg} (${diffLen}):`);
             const headerEnd = chalk.bold(msg);
-            
+
             // const header = `${msg} ${chalk.bold(baseBundleName)} -> ${chalk.bold(topBundleName)} (${diffLen}):`;
             return `${header} \n${diffLen === 0 ? tab + chalk.italic('none') : diffFmted} \n${chalk.bold('END')} ${headerEnd}\n`;
         }
@@ -131,7 +131,8 @@ program
 
 // ============
 
-type Bundle = Record<string, { string: string, line: number }>;
+type BundleItem = { key: string, text: string, line: number };
+type Bundle = Record<string, BundleItem>;
 
 function diffBundles(top: Bundle, base: Bundle): { removed: Bundle, added: Bundle, unchanged: Bundle } {
     const removed = findMissing(top, base);
@@ -155,7 +156,7 @@ function diffBundles(top: Bundle, base: Bundle): { removed: Bundle, added: Bundl
     function findMatching(top: Bundle, base: Bundle): Bundle {
         const res: Bundle = {};
         for (const key in base) {
-            if (key in top && top[key]!.string === base[key]!.string) {
+            if (key in top && top[key]!.text === base[key]!.text) {
                 res[key] = base[key]!;
             }
         }
@@ -164,19 +165,39 @@ function diffBundles(top: Bundle, base: Bundle): { removed: Bundle, added: Bundl
 }
 
 function parseBundle(bundle: string): Bundle {
+    let multiline = false;
+
     return bundle
         .split("\n")
-        .reduce<Bundle>((acc, line, lineIdx) => {
+        .reduce<BundleItem[]>((acc, line, lineIdx) => {
             const trimmed = line.trim();
-            if (trimmed === '' || trimmed.startsWith('#'))
-                return acc;
+            if (!multiline) {
+                // ignore comments and empty lines
+                if (trimmed.startsWith('#') || trimmed === '')
+                    return acc;
+            }
 
-            let [key, ...value] = trimmed.split("=");
-            if (value.length === 0)
-                throw new Error(`Bundle parsing failed: encountered a line not in key=value format: key '${key}'`);
+            if (multiline) {
+                // simply append when item is multiline
+                acc.at(-1)!.text += line;
+            } else {
+                let [key, ...value] = line.split("=");
+                if (value.length === 0)
+                    throw new Error(`Bundle parsing failed: encountered a line not in key=value format: key '${key}'`);
 
-            acc[key!.trim()] = { string: value.join("=").trim(), line: lineIdx + 1 }
+                acc.push({
+                    key: key!.trim(),
+                    text: value.join("="),
+                    line: lineIdx + 1
+                });
+            }
 
+            multiline = line.endsWith('\\');
+
+            return acc;
+        }, [])
+        .reduce<Bundle>((acc, item) => {
+            acc[item.key] = item;
             return acc;
         }, {})
 }
