@@ -4,9 +4,9 @@ A CLI utility to view missing/extra/untranslated keys between bundles (localizat
 
 # Requirements
 
-The utility is hosted on NPM, so to run it you will:
+The utility is hosted on NPM, so to run it you will need:
 - A JS package manager that can run packages, so `npm` (`npx`), `bun` (`bunx`), etc. 
-- Local Mindustry repository.
+- Mindustry repository cloned locally.
 
 # Usage
 
