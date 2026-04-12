@@ -16,11 +16,11 @@ Navigate to the Mindustry repository you've cloned locally.
 
 Then run:
 ```bash
-npx diff-mindustry-bundles <translation_bundle>
+npx diff-mindustry-bundles@latest <translation_bundle>
 ```
 where `<translation_bundle>` is the name of a bundle you want to check (no extension), for example: `bundle_de`.
 ```bash
-npx diff-mindustry-bundles bundle_de
+npx diff-mindustry-bundles@latest bundle_de
 ```
 
 Available options:
